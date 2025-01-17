@@ -4,6 +4,8 @@ on:
     push:
         branches:
             - main # or master, depending on your default branch
+        paths:
+            - web/** # or the path to your build directory
 
 jobs:
     deploy:
