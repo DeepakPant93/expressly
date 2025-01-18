@@ -5,7 +5,7 @@
             "name": "Python Debugger: expressly",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/server/expressly_server/src/expressly_server/main.py",
+            "program": "${workspaceFolder}/server/expressly_server/src/expressly_server/app.py",
             "args": ["run"],
             "console": "integratedTerminal",
             "justMyCode": true,

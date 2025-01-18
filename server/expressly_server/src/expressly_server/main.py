@@ -14,33 +14,13 @@ def run():
     """
     Run the crew.
     """
-    # inputs = {
-    #     "context": "I want to thanks DeepLearning and John from the crewAI for this amazing course..",
-    #     "format": {
-    #         "name": "Chat",
-    #         "description": "A conversational and interactive response that mimics real-time messaging. It focuses on direct, clear, and natural communication with a friendly tone.",
-    #         "max_length": 200,
-    #         "negative": "Do not use overly formal language, complex sentence structures, or impersonal tones. Avoid too much technical information and hashtags.",
-    #     },
-    #     "tone": {
-    #         "name": "Friendly",
-    #         "description": "Warm and approachable, making the user feel comfortable.",
-    #     },
-    #     "target_audience": {
-    #         "name": "WhatsApp Message",
-    #         "description": "Casual or semi-formal communication meant for direct, personal messaging. Used for sending quick updates, reminders, or messages to small groups, often informal in tone.",
-    #         "ideal_audience": "Friends, family, small teams, personal contacts, colleagues in a more relaxed setting",
-    #     },
-    # }
 
     inputs = {
-        'prompt': "I want to thanks DeepLearning and John from the crewAI for this amazing course..",
-        'format': "Chat",
-        'tone': "Friendly",
-        'target_audience': "LinkedIn Post",
-        'active_tab': "target_audience"
+        "prompt": "I want to thanks DeepLearning and John from the crewAI for this amazing course..",
+        "format": "Email",
+        "tone": "Friendly",
+        "target_audience": "",
     }
-
 
     ExpresslyServer().crew().kickoff(inputs=inputs)
 

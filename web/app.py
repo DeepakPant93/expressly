@@ -1,8 +1,51 @@
 import gradio as gr
+import requests
+import os
 
-def sentence_builder(prompt, target_audience, format, tone, active_tab):
-    return f"""Target:: {target_audience} \n Format:: {format} & Tone:: {tone} \n Active Tab:: {active_tab} \n\n Prompt:: {prompt}"""
+def call(prompt, target_audience, format, tone, active_tab):
+    """
+    Calls the Expressly Server API to generate content based on the given inputs.
 
+    Args:
+    prompt (str): The text prompt for the chat.
+    target_audience (str): The target audience for the response.
+    format (str): The format of the response, e.g., text, markdown.
+    tone (str): The tone of the response, e.g., formal, informal.
+    active_tab (str): The active tab on the UI, either "target_audience" or "format_tone".
+
+    Returns:
+    str: The generated text response.
+
+    Raises:
+    ValueError: If prompt is empty, or if the active_tab value is invalid.
+    """
+
+    # Validating and constructing the inputs
+    if prompt is None or prompt == "":
+        raise ValueError("Prompt is required")
+
+    if active_tab == "target_audience":
+        format = ""
+        tone = ""
+    elif active_tab == "format_tone":
+        target_audience = ""
+    else:
+        raise ValueError("Invalid active_tab value")
+
+
+    url = os.getenv("EXPRESSLY_SERVER_URL", "http://localhost:80") + "/chat"
+    data = {
+        "prompt": prompt,
+        "target_audience": target_audience,
+        "format": format,
+        "tone": tone,
+    }
+    try:
+        response = requests.post(url, json=data)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        raise ValueError(f"Error occurred while calling the server: {e}")
+    return response.json()["result"]
 
 with gr.Blocks() as app:
     gr.Markdown("# Expressly - Text Transformation App")
@@ -48,7 +91,7 @@ with gr.Blocks() as app:
             results = gr.Textbox(label="Result", lines=16)
     
     btn_submit.click(
-        fn=sentence_builder, 
+        fn=call, 
         inputs=[prompt, target_audience, format, tone, active_tab], 
         outputs=[results]
     )
