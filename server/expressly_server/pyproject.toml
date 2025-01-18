@@ -9,7 +9,7 @@ dependencies = [
 ]
 
 [project.scripts]
-expressly_server = "expressly_server.main:run"
+expressly_server = "expressly_server.app:main"
 run_crew = "expressly_server.main:run"
 train = "expressly_server.main:train"
 replay = "expressly_server.main:replay"

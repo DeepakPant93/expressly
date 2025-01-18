@@ -9,9 +9,8 @@ COPY pyproject.toml .
 
 # Install build tool (hatchling) and project dependencies
 RUN pip install --upgrade pip \
-    && pip install hatchling \
-    && hatch build --target /tmp/dist \
-    && pip install /tmp/dist/*.whl
+    && pip install crewai \
+    && crewai install
 
 # Copy the application code into the container
 COPY . .
@@ -20,4 +19,4 @@ COPY . .
 EXPOSE 80
 
 # Define the command to run your application
-CMD ["python", "src/expressly_server/app.py"]
+CMD ["uv", "run", "expressly_server"]
