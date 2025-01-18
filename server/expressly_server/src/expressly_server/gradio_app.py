@@ -130,7 +130,7 @@ with gr.Blocks() as app:
 
 def launch():
     print("Launching Gradio app at 7860...")
-    app.queue(max_size=10).launch(server_port=7860)
+    app.queue(max_size=10).launch(server_port=10000)
 
 
 if __name__ == "__main__":
