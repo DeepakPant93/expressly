@@ -28,7 +28,7 @@ async def root() -> responses.RedirectResponse:
     return responses.RedirectResponse("/docs")
 
 # Include routers
-app.include_router(router, prefix="/api/v1", tags=["Operations"])
+app.include_router(router, prefix="/app/v1", tags=["Operations"])
 
 
 def _custom_openapi() -> dict:

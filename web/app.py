@@ -33,7 +33,7 @@ def call(prompt, target_audience, format, tone, active_tab):
         raise ValueError("Invalid active_tab value")
 
 
-    url = os.getenv("EXPRESSLY_SERVER_URL", "http://localhost:10000") + "/api/v1/chat"
+    url = os.getenv("EXPRESSLY_SERVER_URL", "http://localhost:10000") + "/app/v1/chat"
     data = {
         "prompt": prompt,
         "target_audience": target_audience,
