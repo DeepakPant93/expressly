@@ -33,7 +33,7 @@ def call(prompt, target_audience, format, tone, active_tab):
         raise ValueError("Invalid active_tab value")
 
 
-    url = os.getenv("EXPRESSLY_SERVER_URL", "http://localhost:80") + "/chat"
+    url = os.getenv("EXPRESSLY_SERVER_URL", "http://localhost:10000") + "/api/v1/chat"
     data = {
         "prompt": prompt,
         "target_audience": target_audience,
@@ -41,7 +41,7 @@ def call(prompt, target_audience, format, tone, active_tab):
         "tone": tone,
     }
     try:
-        response = requests.post(url, json=data)
+        response = requests.post(url, json=data, verify=False)
         response.raise_for_status()
     except requests.exceptions.RequestException as e:
         raise ValueError(f"Error occurred while calling the server: {e}")
@@ -88,7 +88,7 @@ with gr.Blocks() as app:
 
         # Right Column for Output
         with gr.Column(scale=1):
-            results = gr.Textbox(label="Result", lines=16)
+            results = gr.Markdown(label="Result")
     
     btn_submit.click(
         fn=call, 
