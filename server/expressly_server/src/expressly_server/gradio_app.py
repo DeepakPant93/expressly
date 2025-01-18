@@ -129,7 +129,7 @@ with gr.Blocks() as app:
 
 
 def launch():
-    app.queue(max_size=10).launch()
+    app.queue(max_size=10).launch(server_port=7860)
 
 
 if __name__ == "__main__":

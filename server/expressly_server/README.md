@@ -1,3 +1,16 @@
+---
+title: Expressly
+emoji: 📉
+colorFrom: yellow
+colorTo: gray
+sdk: gradio
+sdk_version: 5.12.0
+app_file: app.py
+pinned: false
+license: mit
+short_description: Expressly - Text Transformation App
+---
+
 # Expressly - Text Transformation App Backend
 
 This document provides an overview of the backend server for the Expressly - Text Transformation App. The app is designed to transform text based on user preferences and descriptions, leveraging a CrewAI-based multi-agent AI application.

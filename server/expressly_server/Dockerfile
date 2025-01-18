@@ -1,11 +1,14 @@
 # Use an official Python image as a base
 FROM python:3.11-slim
 
+RUN useradd -m -u 1000 user
+USER user
+
 # Set the working directory inside the container
 WORKDIR /app
 
 # Copy the pyproject.toml and any other build-related files
-COPY pyproject.toml .
+COPY --chown=user pyproject.toml .
 
 # Install build tool (hatchling) and project dependencies
 RUN pip install --upgrade pip \
@@ -13,10 +16,10 @@ RUN pip install --upgrade pip \
     && crewai install
 
 # Copy the application code into the container
-COPY . .
+COPY --chown=user . .
 
 # Expose the port your FastAPI app will run on (10000 port for render)
-EXPOSE 10000 
+EXPOSE 7860 
 
 # Define the command to run your application
 CMD ["uv", "run", "expressly_server"]
