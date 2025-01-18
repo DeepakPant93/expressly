@@ -11,14 +11,18 @@ WORKDIR /app
 COPY --chown=user pyproject.toml .
 
 # Install build tool (hatchling) and project dependencies
+# RUN pip install --upgrade pip \
+#     && pip install crewai \
+#     && crewai install
 RUN pip install --upgrade pip \
     && pip install crewai \
+    && export PATH=$PATH:$(python -m site --user-base)/bin \
     && crewai install
 
 # Copy the application code into the container
 COPY --chown=user . .
 
-# Expose the port your FastAPI app will run on (10000 port for render)
+# Expose the port your FastAPI app will run on 7860
 EXPOSE 7860 
 
 # Define the command to run your application

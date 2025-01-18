@@ -1,12 +1,10 @@
 ---
 title: Expressly
-emoji: 📉
-colorFrom: yellow
-colorTo: gray
-sdk: gradio
-sdk_version: 5.12.0
-app_file: app.py
-pinned: false
+emoji: 🎵
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_port: 7860
 license: mit
 short_description: Expressly - Text Transformation App
 ---
