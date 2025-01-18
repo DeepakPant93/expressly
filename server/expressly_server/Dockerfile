@@ -15,8 +15,8 @@ RUN pip install --upgrade pip \
 # Copy the application code into the container
 COPY . .
 
-# Expose the port your FastAPI app will run on
-EXPOSE 80
+# Expose the port your FastAPI app will run on (10000 port for render)
+EXPOSE 10000 
 
 # Define the command to run your application
 CMD ["uv", "run", "expressly_server"]
